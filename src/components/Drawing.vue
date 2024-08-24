@@ -93,24 +93,26 @@ const endDrawing = () => {
 const startMove = (options) => {
   if (!isMoving) return;
 
+  const event = options.e.touches ? options.e.touches[0] : options.e;
   canvas.value.isDragging = true;
   canvas.value.selection = false;
-  canvas.value.lastPosX = options.e.clientX;
-  canvas.value.lastPosY = options.e.clientY;
+  canvas.value.lastPosX = event.clientX;
+  canvas.value.lastPosY = event.clientY;
 };
 
 const moveCanvas = (options) => {
   if (!canvas.value.isDragging || !isMoving) return;
 
-  const deltaX = options.e.clientX - canvas.value.lastPosX;
-  const deltaY = options.e.clientY - canvas.value.lastPosY;
+  const event = options.e.touches ? options.e.touches[0] : options.e;
+  const deltaX = event.clientX - canvas.value.lastPosX;
+  const deltaY = event.clientY - canvas.value.lastPosY;
 
   canvas.value.viewportTransform[4] += deltaX / currentZoom;
   canvas.value.viewportTransform[5] += deltaY / currentZoom;
 
   canvas.value.renderAll();
-  canvas.value.lastPosX = options.e.clientX;
-  canvas.value.lastPosY = options.e.clientY;
+  canvas.value.lastPosX = event.clientX;
+  canvas.value.lastPosY = event.clientY;
 };
 
 const endMove = () => {
