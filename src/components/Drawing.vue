@@ -6,7 +6,6 @@
     <button @click="setMode('moveCanvas')">Move Canvas</button>
     <button @click="setMode('select')">Select</button>
     <button @click="deleteSelected">Delete Selected</button>
-    <button @click="resetCanvas">Reset Canvas</button>
   </div>
   <div id="canvas-container">
     <canvas id="canvas"></canvas>
@@ -128,10 +127,6 @@ const deleteSelected = () => {
   } else {
     console.log('No active object to delete');
   }
-};
-
-const resetCanvas = () => {
-  canvas.value.clear();
 };
 
 const zoomIn = () => {
